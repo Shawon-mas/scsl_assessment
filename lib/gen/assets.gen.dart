@@ -24,14 +24,16 @@ class $AssetsIconGen {
   /// File path: assets/icon/search.svg
   String get search => 'assets/icon/search.svg';
 
-  /// File path: assets/icon/task.png
+  /// File path: assets/icon/support.svg
+  String get support => 'assets/icon/support.svg';
+
   String get task => 'assets/icon/task.png';
 
 
 
-
   /// List of all assets
-  List<dynamic> get values => [background, home, notification, search, task];
+  List<dynamic> get values =>
+      [background, home, notification, search, support, task];
 }
 
 class Assets {

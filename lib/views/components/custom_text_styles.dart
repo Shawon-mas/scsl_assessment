@@ -24,7 +24,7 @@ TextStyle titleBlack({
   return GoogleFonts.lato(
     color: primaryBlack,
     fontWeight: FontWeight.bold,
-    fontSize: 20.sp,
+    fontSize:fontSize?? 20.sp,
   );
 }
 TextStyle descriptionBlack({
@@ -59,7 +59,18 @@ TextStyle titlePink({
     fontWeight: fontWeight??FontWeight.w500,
     fontSize:fontSize?? 14.sp,
   );
+
 }
 
+TextStyle redStyle({
+  double? fontSize,
+  FontWeight? fontWeight,
+}) {
+  return GoogleFonts.lato(
+    color: storkColor,
+    fontWeight: fontWeight??FontWeight.w500,
+    fontSize:fontSize?? 14.sp,
+  );
 
+}
 

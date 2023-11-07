@@ -6,3 +6,5 @@ const cardBackground = Color(0xFFF2EAF1);
 const whiteColor = Colors.white;
 const primaryBorderColor = Color(0xFFE5E5E5);
 const secondaryBorderColor = Color(0xFFE1A076);
+const storkColor = Color(0xFFE22B2B);
+//#E22B2B
