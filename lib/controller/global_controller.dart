@@ -11,6 +11,7 @@ import '../global/db_helper.dart';
 import '../model/bottomnav_items.dart';
 import '../model/post_data.dart';
 import '../model/post_details_data.dart';
+import '../views/components/custom_animated_popup.dart';
 import '../views/screens/home_screen.dart';
 import '../views/screens/main_home_screen.dart';
 import '../views/screens/notification_screen.dart';
@@ -38,7 +39,7 @@ var isFetchPost=false.obs;
   List<Widget> screens(GlobalController controller) {
     return [
       HomeScreen(controller: controller),
-      NotificationScreen(controller: controller),
+      Popup(controller: controller),
     ];
   }
   gotoHome() async {
