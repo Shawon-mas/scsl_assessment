@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:scsl_assessment/views/components/custom_text_styles.dart';
+import 'package:scsl_assessment/views/screens/post_details_screen.dart';
 
 import '../../controller/global_controller.dart';
 import '../../gen/assets.gen.dart';
@@ -21,27 +22,44 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
-        child: Obx(() => Column(
-              children: [
-                buildSearchBar(),
-                SizedBox(height: 24.h,),
-                Expanded(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _controller.posts.length,
-                        itemBuilder: (context, index) {
-                          final post=_controller.posts[index];
-                              return ItemCard(
-                                title: post.id.toString(),
-                                subTittle: post.title.toString(),
-                                userId: post.userId.toString(),
-                                onTap: (){
-
-                                },
-                              );
-                        }))
-              ],
-            )),
+        child: Obx(() => Container(
+          height: double.maxFinite,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+                image: AssetImage('assets/icon/bg.png')
+            )
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  buildSearchBar(),
+                  SizedBox(height: 24.h,),
+                 _controller.isFetchPost.value
+                  ?Center(child: SizedBox(height:50.h,width:50.w,child: CircularProgressIndicator()))
+                  :Expanded(
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _controller.filterItems.length,
+                          itemBuilder: (context, index) {
+                            final post=_controller.filterItems[index];
+                                return Padding(
+                                  padding:  EdgeInsets.symmetric(vertical: 20.h),
+                                  child: ItemCard(
+                                    title: post.id.toString(),
+                                    subTittle: post.title.toString(),
+                                    userId: post.userId.toString(),
+                                    onTap: (){
+                                       Get.to(()=>PostDetailsScreen(
+                                         postId: post.id,
+                                       ) );
+                                    },
+                                  ),
+                                );
+                          }))
+                ],
+              ),
+        )),
       ),
     );
   }
@@ -51,16 +69,9 @@ class HomeScreen extends StatelessWidget {
       style: titleBlack(fontSize: 14.sp),
       controller: _controller.searchController,
       onChanged: (query) {
-        // controller.filterChatHistories(query);
-        /*controller.searchQuery.value = query;
-        controller.filterChatHistory();
-        if(query.isEmpty){
-          controller.searchQuery.value='';
-          controller.filteredChatHistory.value=[];
-        }*/
+        _controller.filterItem(query);
       },
       decoration: InputDecoration(
-        //  contentPadding: EdgeInsets.fromLTRB(12.w, 15.h, 12.w, 0),
 
         fillColor: Colors.white,
         filled: true,

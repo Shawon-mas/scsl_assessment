@@ -34,4 +34,13 @@ class PostData {
     "title": title,
     "body": body,
   };
+
+  Map<String, Object?> toMap() {
+    return {
+      "userId": userId,
+      "id": id,
+      "title": title,
+      "body": body,
+    };
+  }
 }

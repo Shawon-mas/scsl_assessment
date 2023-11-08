@@ -29,6 +29,7 @@ class MainHomeScreen extends StatelessWidget {
         );
       }),
       bottomNavigationBar:  BottomAppBar(
+          color: Colors.white,
           shape: const CircularNotchedRectangle(),
           notchMargin: 5,
           child: ListView.separated(

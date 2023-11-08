@@ -52,7 +52,6 @@ class SplashScreen extends StatelessWidget {
                     width: 200.w,
                     child: LinearProgressIndicator(
                       borderRadius: BorderRadius.circular(5.r),
-
                       color: primaryBlack,
                     ),
                   )
