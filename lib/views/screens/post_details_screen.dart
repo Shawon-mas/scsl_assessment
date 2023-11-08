@@ -27,32 +27,23 @@ class PostDetailsScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(),
-        body: Obx(() =>
-        Container(
-           width: double.maxFinite,
-           height: double.maxFinite,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/icon/bg.png'))
+        body: Obx(() => Stack(
+          children: [
+            Image.asset('assets/icon/bg.png',
+              fit: BoxFit.cover,
+              width: double.maxFinite,
             ),
-            child: _controller.postDetails.value.id==0
-          ?Center(child: SizedBox(height:50.h,width:50.w,child: CircularProgressIndicator()))
-          :IntrinsicHeight(
-
-            child: Padding(
-              padding: const EdgeInsets.all(30),
-              child: ItemDetailsCard(
-                  id: _controller.postDetails.value.id.toString(),
-                  subTittle: _controller.postDetails.value.title.toString(),
-                  userId: _controller.postDetails.value.userId.toString(),
-                  body: _controller.postDetails.value.body.toString(),
-                ),
+            _controller.postDetails.value.id==0
+                ?Center(child: SizedBox(height:50.h,width:50.w,child: CircularProgressIndicator()))
+                :ItemDetailsCard(
+              id: _controller.postDetails.value.id.toString(),
+              subTittle: _controller.postDetails.value.title.toString(),
+              userId: _controller.postDetails.value.userId.toString(),
+              body: _controller.postDetails.value.body.toString(),
             ),
-          ),
-        )
 
-        ),
+          ],
+        )),
       ),
     );
   }
